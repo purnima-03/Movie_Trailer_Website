@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Movie Trailers</title>
+
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        body {
+            padding-top: 80px;
+			background: linear-gradient(to bottom, #000000 19%, #696969 100%);
+        }
+        #trailer .modal-dialog {
+            margin-top: 200px;
+            width: 640px;
+            height: 480px;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }
+        .movie-tile {
+            margin-bottom: 20px;
+            padding-top: 20px;
+			
+        }
+        .movie-tile:hover{
+            background-color: #808080;
+            cursor: pointer; 
+            		
+        }
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+		.col-lg-4{
+		    color: #FFF8DC;
+			font-family: Times New Roman;
+		}
+		#tomato{
+		 font-family: Times New Roman;
+		 color: #FFE6FF;
+		 font-size: 25px;
+		}
+		#tomato:hover{
+		color: 	#FF1493;
+		}
+		#new{
+		 font-family: Times New Roman;
+		 font-size: 20px;
+		 align: center;
+		}
+        .myimg {
+		 position:relative;
+         width: 100%;
+        }
+		.overlay {
+		 position: absolute;
+	     top: 0;
+         bottom: 0;
+         left: 0;
+         right: 0;
+         height: 100%;
+         width: 100%;
+         opacity: 0;
+         transition: .5s ease;
+         background-color: #808080;
+        }
+        .myimg:hover .overlay {
+         opacity: 1;
+        }
+
+        .text {
+         color: white;
+         font-size: 20px;
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        }
+		<!--.img__description {
+  position: absolute;
+  top: 400px;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
+  background-color: rgba(255,0,0,0.1);
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.img__wrap:hover .img__description {
+  visibility: visible;
+  opacity: 1;
+}-->
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.movie-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+        // Animate in the movies when the page loads
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+    </script>
+</head>
+
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media" id="trailer-video-container">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+		    <a class="navbar-brand" href="movie_trailer.html" ><span id="tomato">Home</span></a>
+            <a class="navbar-brand" href="allfilms.html" ><span id="tomato">All Films</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+	
+<div class="container">
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="KYz2wyBy3kc" data-toggle="modal" data-target="#trailer">
+   <div class="myimg"> <img src="http://www.diszine.com/wp-content/uploads/2010/05/Toy-Story-3.jpg" width="220" height="342">
+	<br><span id="new" ><b>TOY STORY</b><span>
+	<div class="overlay"><div class="text">A story of a boy and his that come to life.</div></div>
+	</div>
+	</div>
+	<!--<div class="desc" top="10px" bottom= "10px" left= "5px" right= "5px">A story of a boy and his that come to life.</div>-->	
+	
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="5PSNL1qE6VY" data-toggle="modal" data-target="#trailer">
+    <div class="myimg"><img src="https://resizing.flixster.com/S5uksiCrVzEIio7HTEEX5Bem1rU=/206x305/v1.bTsxMTE3Njc5MjtqOzE3NDk5OzEyMDA7ODAwOzEyMDA" width="220" height="342">
+	<br><span id="new" ><b>AVATAR</b><span>
+	<div class="overlay"><div class="text">A marine on an alien planet.</div></div>
+	<!--<div class="desc" top="10px" bottom= "10px" left= "5px" right= "5px">A marine on an alien planet.</div>-->
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="cMfeWyVBidk" data-toggle="modal" data-target="#trailer">
+    <div class="myimg"><img src="https://fanart.tv/fanart/movies/950/movieposter/ice-age---the-meltdown-52a89da5da857.jpg" width="220" height="342">
+	<br><span id="new" ><b>ICE AGE</b><span>
+	<div class="overlay"><div class="text">A group of mammals surviving the Paleolithic ice age.</div></div>
+	<!--<div class="desc" top="10px" bottom= "10px" left= "5px" right= "5px">A group of mammals surviving the Paleolithic ice age.</div>-->
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="RH3OxVFvTeg" data-toggle="modal" data-target="#trailer">
+    <div class="myimg"><img src="http://logan-touch.foxfilm.com/backgrounds_logan_outer.jpg" width="220" height="342">
+	<br><span id="new" ><b>LOGAN</b><span>
+	<div class="overlay"><div class="text">In the near future, a weary Logan (Hugh Jackman) cares for an ailing Professor X (Patrick Stewart) at a remote outpost on the Mexican border. His plan to hide from the outside world gets upended when he meets a young mutant (Dafne Keen) who is very much like him.</div></div>
+	<!--<div class="desc" top="10px" bottom= "10px" left= "5px" right= "5px">In the near future, a weary Logan (Hugh Jackman) cares for an ailing Professor X (Patrick Stewart) at a remote outpost on the Mexican border. His plan to hide from the outside world gets upended when he meets a young mutant (Dafne Keen) who is very much like him. Logan must now protect the girl and battle the dark forces that want to capture her.</div>-->
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="fq5zU9T_Hl4" data-toggle="modal" data-target="#trailer">
+    <div class="myimg"><img src="http://static.rogerebert.com/uploads/movie/movie_poster/madagascar-2005/large_yumzX3Fn7geEKEjuAGNcRjZETPE.jpg" width="220" height="342">
+	<br><span id="new" ><b>MADAGASCAR</b><span>
+	<div class="overlay"><div class="text">Four animals from the New York Central Zoo, with a spoiled upbringing, escape, unintentionally helped by four fugitive penguins. They find themselves in Madagascar subsequently amidst happy lemurs.</div></div>
+	<!--<div class="desc" top="10px" bottom= "10px" left= "5px" right= "5px">Four animals from the New York Central Zoo, with a spoiled upbringing, escape, unintentionally helped by four fugitive penguins. They find themselves in Madagascar subsequently amidst happy lemurs.</div>-->
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="B1E7h3SeMDk" data-toggle="modal" data-target="#trailer">
+    <div class="myimg"><img src="https://i.ytimg.com/vi/FvzqC8j8Tj8/maxresdefault.jpg" width="220" height="342">
+	<br><span id="new" ><b>INDEPENDENCE DAY</b><span>
+	<div class="overlay"><div class="text">A computer whiz, a hot-shot pilot, the U.S. President and a group of ragtag survivors unite to save mankind after an alien race invades Earth and destroys all its major cities.</div></div>
+	<!--<div class="desc" top="10px" bottom= "10px" left= "5px" right= "5px">A computer whiz, a hot-shot pilot, the U.S. President and a group of ragtag survivors unite to save mankind after an alien race invades Earth and destroys all its major cities.</div>-->
+	</div>
+</div>
+    </div>
+	</div>
+  </body>
+</html>
